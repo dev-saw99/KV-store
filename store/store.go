@@ -29,13 +29,19 @@ func (s *Data) post(key string, value []byte) {
 }
 
 func (s *Data) get(key string) ([]byte, bool) {
+
 	fmt.Println("get called")
 	var data []byte
 
 	if key == "" {
-		return data, true
+		var tmp string
+		for key := range s.Data {
+			tmp += key + ","
+		}
+		return []byte(tmp), true
 	}
 
+	
 	if data, ok := s.Data[key]; ok {
 		return data, ok
 	}
